@@ -42,6 +42,8 @@ VOID CALLBACK TimerProc(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedEnhance();	
 		_Global_Obj_Ptr->OnBnClickedRegistry();
 		_Global_Obj_Ptr->OnBnClickedImagefusion();
+		string fileFullName2=dir_path2+fileName;
+		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
 		i++;
 
 	}
@@ -66,7 +68,9 @@ VOID CALLBACK TimerProc1(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->img2=imread(fileFullName1);
 		_Global_Obj_Ptr->OnBnClickedEnhance();	
 		_Global_Obj_Ptr->OnBnClickedRegistry();
-		_Global_Obj_Ptr->OnBnClickedLaplace();				
+		_Global_Obj_Ptr->OnBnClickedLaplace();
+		string fileFullName2=dir_path2+fileName;
+		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
 		i++;
 
 	}
@@ -813,8 +817,10 @@ VOID CALLBACK TimerProc31(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 
 CRenderCenterDlg::CRenderCenterDlg(CWnd* pParent /*=NULL*/)
 	: CCommonDlg(CRenderCenterDlg::IDD, pParent)
+    , m_FusionSocket(NULL)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+    m_RenderCenterSocket = new RenderCenterSocket(this);
 }
 
 void CRenderCenterDlg::DoDataExchange(CDataExchange* pDX)
@@ -865,6 +871,22 @@ BOOL CRenderCenterDlg::OnInitDialog()
 	m_ComboL.AddString(_T("图像比率低通融合"));
 	m_ComboL.SetCurSel(0);
 	
+
+    if (!m_RenderCenterSocket->Create(RENDER_CENTER_PORT))
+    {
+        AfxMessageBox(TEXT("套接字创建失败."));
+        exit(-1);
+    }
+    if (!m_RenderCenterSocket->Listen())
+    {
+        AfxMessageBox(TEXT("监听失败."));
+        exit(-1);
+    }
+    if (!m_RenderCenterSocket->AsyncSelect(FD_ACCEPT))
+    {
+        AfxMessageBox(TEXT("选择失败."));
+        exit(-1);
+    }
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
@@ -1052,6 +1074,7 @@ void CRenderCenterDlg::OnBnClickedInputa()
 	if(tDlg.DoModal()==IDOK)
 	{
 		tFileName=tDlg.GetPathName();
+		// tstring=tFileName.GetBuffer(0);
 		tstring=wstring2string(tFileName.GetBuffer(0));
 	}
 	img1=imread(tstring,1);
@@ -1083,6 +1106,7 @@ void CRenderCenterDlg::OnBnClickedInputb()
 	if(tDlg.DoModal()==IDOK)
 	{
 		tFileName=tDlg.GetPathName();
+		// tstring=tFileName.GetBuffer(0);
 		tstring=wstring2string(tFileName.GetBuffer(0));
 	}
 	img2=imread(tstring,1);
@@ -1112,6 +1136,7 @@ void CRenderCenterDlg::OnBnClickedInputmuban()
 	if(tDlg.DoModal()==IDOK)
 	{
 		tFileName=tDlg.GetPathName();
+		// tstring=tFileName.GetBuffer(0);
 		tstring=wstring2string(tFileName.GetBuffer(0));
 	}
 	imgtarget=imread(tstring,1);
@@ -1631,6 +1656,7 @@ void CRenderCenterDlg::OnBnClickedSave()
 	if(tDlg.DoModal()==IDOK)
 	{
 		tFileName=tDlg.GetPathName();
+		// tstring=tFileName.GetBuffer(0);
 		tstring=wstring2string(tFileName.GetBuffer(0));
 	}
 	if(!imgfusion.data)
@@ -1639,4 +1665,38 @@ void CRenderCenterDlg::OnBnClickedSave()
 		return;
 	}
 	imwrite(tstring,imgfusion);
+}
+
+void CRenderCenterDlg::SetFusionSocket()
+{
+    m_Lock.Lock();
+    if (m_FusionSocket != NULL)
+    {
+        AfxMessageBox(TEXT("连接已满"));
+        m_Lock.Unlock();
+        return;
+    }
+    m_FusionSocket = new RenderCenterSocket(this);
+    if (m_RenderCenterSocket->Accept(*m_FusionSocket))
+    {
+        m_FusionSocket->AsyncSelect(FD_CLOSE | FD_READ | FD_WRITE);
+    }
+    m_Lock.Unlock();
+}
+
+void CRenderCenterDlg::ResetFusionSocket()
+{
+    m_Lock.Lock();
+    if (m_FusionSocket != NULL)
+    {
+        m_FusionSocket->Close();
+        delete m_FusionSocket;
+    }
+    m_Lock.Unlock();
+}
+
+void CRenderCenterDlg::RenderKeyTarget(TrueDataFrame &keyTarget)
+{
+    // TODO: Render key target image.
+    m_FusionSocket->SendKeyTarget();
 }

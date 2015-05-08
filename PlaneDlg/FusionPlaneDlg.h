@@ -40,10 +40,12 @@ protected:
 
 public:
     virtual void CreateDataCenterSocket();
+    virtual void ConnectRenderCenter();
     virtual void ConnectFusion(const CString &addr, int port);
     virtual void SendPlaneType();
     virtual void AddPlaneSocket();
     virtual void AddNoiseData(NoiseDataPacket &packet);
+    virtual void AddNoiseDataPhase2();
     virtual void SetFusionAlgo(FusionAlgo *algo);
     virtual void DoFusion();
     virtual void SendNoiseDatas(TrueDataPacket &packet);
@@ -52,6 +54,7 @@ public:
     FusionSocket *m_FusionSocket;
     vector<FusionSocket *> m_PlaneSockets;
     CCriticalSection m_Lock;
+    FusionSocket *m_RenderCenterSocket;
     FusionAlgo *m_FusionAlgo;
     FusionInput m_FusionInput;
     FusionOutput m_FusionOutput;

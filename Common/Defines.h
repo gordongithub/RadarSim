@@ -12,6 +12,7 @@ using namespace std;
 using namespace Gdiplus;
 
 #define PAD 10
+#define KEY_TARGET_HIT_THRESHOLD 100
 
 #define TARGET_TRACK_WIDTH 2
 #define TARGET_RADIUS 4
@@ -157,6 +158,7 @@ enum TargetType
 };
 
 extern Image __declspec(dllimport) *TargetTypeImages[TargetTypeLast];
+extern Image __declspec(dllimport) *TargetTypeMaskImages[TargetTypeLast];
 extern CString __declspec(dllimport) TargetTypeNames[TargetTypeLast];
 
 enum ExplosionType
@@ -208,6 +210,11 @@ extern CString __declspec(dllimport) TargetMoveTypeNames[TargetMoveTypeLast];
 #define DATA_CENTER_ADDR TEXT("localhost")
 #define DATA_CENTER_PORT 10086
 
+#define RENDER_CENTER_ADDR TEXT("localhost")
+#define RENDER_CENTER_PORT 10087
+
+#define KEY_TARGET_FILE_NAME TEXT("D:\\test\\fusionimage\\1.jpg")
+
 enum PacketType
 {
     PacketTypeImFusion = 0,
@@ -226,6 +233,7 @@ enum PacketType
     PacketTypeTrueData,
     PacketTypeNoiseData,
     PacketTypeFusionData,
+    PacketTypeKeyTarget,
 };
 
 enum NoiseType
