@@ -4,6 +4,12 @@
 #include "stdafx.h"
 #include "FusionPlane.h"
 #include "FusionPlaneDlg.h"
+#include "IpDlg.h"
+
+#include "Utility.h"
+#include <algorithm>
+#include <fstream>
+#include <sstream>
 
 #include <assert.h>
 
@@ -26,7 +32,8 @@ CFusionPlaneDlg::CFusionPlaneDlg(LPCWSTR title
                                  , bool hasDataList
                                  , CWnd* pParent /*=NULL*/)
 	: CPlaneDlg(PacketTypeImFusion, title, hasSensor1, sensor1Title, hasSensor2, sensor2Title, hasStateMap, hasDataList, pParent)
-    , m_FusionSocket(0)
+    , m_FusionSocket(NULL)
+    , m_RenderCenterSocket(NULL)
     , m_FusionAlgo(NULL)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
@@ -64,6 +71,7 @@ BOOL CFusionPlaneDlg::OnInitDialog()
         exit(-1);
     }
 
+    m_RenderCenterSocket = new FusionSocket(this);
 	CPlaneDlg::OnInitDialog();
 
 	// 设置此对话框的图标。当应用程序主窗口不是对话框时，框架将自动
@@ -72,6 +80,7 @@ BOOL CFusionPlaneDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
 
     // TODO: 在此添加额外的初始化代码
+    ConnectRenderCenter();
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
@@ -125,6 +134,74 @@ void CFusionPlaneDlg::SendPlaneType()
     m_DataCenterSocket->SendImFusion(port);
 }
 
+void CFusionPlaneDlg::ConnectRenderCenter()
+{
+    wstring hostName = RENDER_CENTER_ADDR;
+    int port = RENDER_CENTER_PORT;
+
+    wifstream in(ConfigFileName);
+    in.imbue(locale("chs"));
+
+    wstring nextLine = TEXT("");
+
+    while(in || nextLine.length() > 0)
+    {
+        wstring line;
+        if(nextLine.length() > 0)
+        {
+            line = nextLine;  // we read ahead; use it now
+            nextLine = L"";
+        }
+        else
+        {
+            getline(in, line);
+        }
+
+        line = line.substr(0, line.find(TEXT("#")));
+
+        if (line.length() == 0)
+        {
+            continue;
+        }
+
+        wistringstream ist(line);
+        wstring key;
+        ist >> key;
+        if (key == TEXT("RENDER_CENTER_IP"))
+        {
+            wstring ip;
+            ist >> ip;
+            hostName = ip;
+        }
+        else if (key == TEXT("RENDER_CENTER_PORT"))
+        {
+            int configPort;
+            ist >> configPort;
+            port = configPort;
+        }
+    }
+
+    in.close();
+    CIpDlg dlg(hostName.c_str(), port);
+    if (IDOK == dlg.DoModal())
+    {
+        if (!m_RenderCenterSocket->Connect(dlg.m_HostName, dlg.m_Port))
+        {
+            Utility::PromptLastErrorMessage();
+            AfxMessageBox(TEXT("连接到渲染中心失败."));
+            exit(-1);
+        }
+    }
+    else
+    {
+        exit(-1);
+    }
+
+    m_RenderCenterSocket->AsyncSelect(FD_READ);
+    // m_DataCenterSocket->AsyncSelect(FD_CLOSE | FD_READ | FD_WRITE);
+    // AfxMessageBox(TEXT("连接到数据中心"));
+}
+
 void CFusionPlaneDlg::ConnectFusion(const CString &addr, int port)
 {
 }
@@ -152,20 +229,42 @@ void CFusionPlaneDlg::AddNoiseData(NoiseDataPacket &packet)
         {
             TrueDataFrame &frame = m_FusionOutput.m_FusionDataPacket.m_FusionDatas[i];
             m_StateMap.AddTargetData(i, frame.m_Pos, frame.m_Vel, (TargetState)frame.m_State);
+            m_StateMap.m_Targets[i].m_IsKeyTarget = frame.m_IsKeyTarget;
         }
 
-        m_StateMapCtrl.DrawTargets();
-        m_StateMapCtrl.BlendAll();
-        m_StateMapCtrl.Invalidate();
-        m_StateMapDlg.m_Ctrl->DrawTargets();
-        m_StateMapDlg.m_Ctrl->BlendAll();
-        m_StateMapDlg.m_Ctrl->Invalidate();
-
-        m_DataCenterSocket->SendFusionData(m_FusionOutput.m_FusionDataPacket);
-
-        m_FusionInput.m_NoiseDataPackets.clear();
-        m_FusionOutput.m_FusionDataPacket = FusionDataPacket();
+        if (m_StateMap.m_ZoomKeyTargetId != -1)
+        {
+            TrueDataFrame &frame = m_FusionOutput.m_FusionDataPacket.m_FusionDatas[m_StateMap.m_ZoomKeyTargetId];
+            m_RenderCenterSocket->SendKeyTarget(frame);
+        }
+        else
+        {
+            AddNoiseDataPhase2();
+        }
     }
+}
+
+void CFusionPlaneDlg::AddNoiseDataPhase2()
+{
+    m_StateMapCtrl.DrawTargets();
+    m_StateMapCtrl.BlendAll();
+    m_StateMapCtrl.Invalidate();
+    m_StateMapDlg.m_Ctrl->DrawTargets();
+    m_StateMapDlg.m_Ctrl->BlendAll();
+    m_StateMapDlg.m_Ctrl->Invalidate();
+
+    if (m_StateMap.m_ZoomKeyTargetId != -1)
+    {
+        m_ShowZoomDlg = true;
+        m_ZoomDlg.DrawTarget();
+        m_ZoomDlg.ShowWindow(SW_SHOW);
+        m_ZoomDlg.Invalidate();
+    }
+
+    m_DataCenterSocket->SendFusionData(m_FusionOutput.m_FusionDataPacket);
+
+    m_FusionInput.m_NoiseDataPackets.clear();
+    m_FusionOutput.m_FusionDataPacket = FusionDataPacket();
 }
 
 void CFusionPlaneDlg::SendNoiseDatas(TrueDataPacket &packet)
@@ -257,6 +356,13 @@ void CFusionPlaneDlg::ResetSockets()
 {
     m_Lock.Lock();
     CPlaneDlg::ResetSockets();
+    m_RenderCenterSocket->Close();
+    BOOL reuse = TRUE;
+    m_RenderCenterSocket->SetSockOpt(SO_REUSEADDR, (void *)&reuse, sizeof(reuse), SOL_SOCKET);
+    if (!m_RenderCenterSocket->Create())
+    {
+        AfxMessageBox(TEXT("创建到渲染中心的套接字失败"));
+    }
     for (int i = 0; i < m_PlaneSockets.size(); ++i)
     {
         m_PlaneSockets[i]->Close();
