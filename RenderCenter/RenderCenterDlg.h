@@ -15,7 +15,8 @@ class CRenderCenterDlg : public CCommonDlg
 public:
 	CRenderCenterDlg(CWnd* pParent = NULL);	// 标准构造函数
 	Mat img1,img2,img3,imgtarget,imgfusion;
-	
+	CString ImagePath[1000];	
+	int count;
 // 对话框数据
 	enum { IDD = IDD_IMAGEFINAL_DIALOG };
 

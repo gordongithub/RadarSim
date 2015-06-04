@@ -154,8 +154,10 @@ Mat FeatureMatch::doIteration(const Mat& img1, Mat& img2, bool isWarpPerspective
 			if( norm(points2[i1] - points1t.at<Point2f>((int)i1,0)) <= maxInlierDist ) // inlier
 				matchesMask[i1] = 1;
 		}
-		Mat imageturn;
+		Mat imageturn;		
 		warpPerspective(img1,imageturn,H12,img1.size());
 		return imageturn;
 	}
+	else
+		return img1;
 }

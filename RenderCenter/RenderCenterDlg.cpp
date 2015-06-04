@@ -31,6 +31,8 @@ VOID CALLBACK TimerProc(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 
 	vector<string> fileNames = dir.GetListFiles(dir_path, "*.*", false);
 	vector<string> fileNames1 = dir.GetListFiles(dir_path1, "*.*", false);
+	//_Global_Obj_Ptr->ImageName=dir.GetListFiles(dir_path2,"*.*",false);
+
 	if(i<fileNames.size())
 	{
 		string fileName = fileNames[i]; 
@@ -44,6 +46,7 @@ VOID CALLBACK TimerProc(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedImagefusion();
 		string fileFullName2=dir_path2+fileName;
 		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
+		_Global_Obj_Ptr->ImagePath[i]=fileFullName2.c_str();
 		i++;
 
 	}
@@ -58,6 +61,7 @@ VOID CALLBACK TimerProc1(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 {
 	vector<string> fileNames = dir.GetListFiles(dir_path, "*.*", false);
 	vector<string> fileNames1 = dir.GetListFiles(dir_path1, "*.*", false);
+	//_Global_Obj_Ptr->ImageName=dir.GetListFiles(dir_path2,"*.*",false);
 	if(i<fileNames.size())
 	{
 		string fileName = fileNames[i];
@@ -71,6 +75,7 @@ VOID CALLBACK TimerProc1(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedLaplace();
 		string fileFullName2=dir_path2+fileName;
 		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
+		_Global_Obj_Ptr->ImagePath[i]=fileFullName2.c_str();
 		i++;
 
 	}
@@ -83,6 +88,7 @@ VOID CALLBACK TimerProc2(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 {
 	vector<string> fileNames = dir.GetListFiles(dir_path, "*.*", false);
 	vector<string> fileNames1 = dir.GetListFiles(dir_path1, "*.*", false);
+	//_Global_Obj_Ptr->ImageName=dir.GetListFiles(dir_path2,"*.*",false);
 	if(i<fileNames.size())
 	{
 		string fileName = fileNames[i];  
@@ -96,6 +102,7 @@ VOID CALLBACK TimerProc2(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedHisfusion();
 		string fileFullName2=dir_path2+fileName;
 		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
+		_Global_Obj_Ptr->ImagePath[i]=fileFullName2.c_str();
 		i++;
 
 	}
@@ -108,6 +115,7 @@ VOID CALLBACK TimerProc3(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 {
 	vector<string> fileNames = dir.GetListFiles(dir_path, "*.*", false);
 	vector<string> fileNames1 = dir.GetListFiles(dir_path1, "*.*", false);
+	//_Global_Obj_Ptr->ImageName=dir.GetListFiles(dir_path2,"*.*",false);
 	if(i<fileNames.size())
 	{
 		string fileName = fileNames[i]; 
@@ -121,6 +129,7 @@ VOID CALLBACK TimerProc3(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedRate();
 		string fileFullName2=dir_path2+fileName;
 		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
+		_Global_Obj_Ptr->ImagePath[i]=fileFullName2.c_str();
 		i++;
 
 	}
@@ -133,6 +142,7 @@ VOID CALLBACK TimerProc4(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 {
 	vector<string> fileNames = dir.GetListFiles(dir_path, "*.*", false);
 	vector<string> fileNames1 = dir.GetListFiles(dir_path1, "*.*", false);
+	//_Global_Obj_Ptr->ImageName=dir.GetListFiles(dir_path2,"*.*",false);
 	if(i<fileNames.size())
 	{
 		string fileName = fileNames[i];
@@ -145,6 +155,7 @@ VOID CALLBACK TimerProc4(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedImagefusion();
 		string fileFullName2=dir_path2+fileName;
 		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
+		_Global_Obj_Ptr->ImagePath[i]=fileFullName2.c_str();
 		i++;
 
 	}
@@ -157,6 +168,7 @@ VOID CALLBACK TimerProc5(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 {
 	vector<string> fileNames = dir.GetListFiles(dir_path, "*.*", false);
 	vector<string> fileNames1 = dir.GetListFiles(dir_path1, "*.*", false);
+//	_Global_Obj_Ptr->ImageName=dir.GetListFiles(dir_path2,"*.*",false);
 	if(i<fileNames.size())
 	{
 		string fileName = fileNames[i]; 
@@ -169,6 +181,7 @@ VOID CALLBACK TimerProc5(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedLaplace();	
 		string fileFullName2=dir_path2+fileName;
 		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
+		_Global_Obj_Ptr->ImagePath[i]=fileFullName2.c_str();
 		i++;
 
 	}
@@ -181,6 +194,7 @@ VOID CALLBACK TimerProc6(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 {
 	vector<string> fileNames = dir.GetListFiles(dir_path, "*.*", false);
 	vector<string> fileNames1 = dir.GetListFiles(dir_path1, "*.*", false);
+//	_Global_Obj_Ptr->ImageName=dir.GetListFiles(dir_path2,"*.*",false);
 	if(i<fileNames.size())
 	{
 		string fileName = fileNames[i]; 
@@ -193,6 +207,7 @@ VOID CALLBACK TimerProc6(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedHisfusion();	
 		string fileFullName2=dir_path2+fileName;
 		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
+		_Global_Obj_Ptr->ImagePath[i]=fileFullName2.c_str();
 		i++;
 
 	}
@@ -205,6 +220,7 @@ VOID CALLBACK TimerProc7(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 {
 	vector<string> fileNames = dir.GetListFiles(dir_path, "*.*", false);
 	vector<string> fileNames1 = dir.GetListFiles(dir_path1, "*.*", false);
+//	_Global_Obj_Ptr->ImageName=dir.GetListFiles(dir_path2,"*.*",false);
 	if(i<fileNames.size())
 	{
 		string fileName = fileNames[i]; 
@@ -217,6 +233,7 @@ VOID CALLBACK TimerProc7(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedRate();	
 		string fileFullName2=dir_path2+fileName;
 		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
+		_Global_Obj_Ptr->ImagePath[i]=fileFullName2.c_str();
 		i++;
 
 	}
@@ -229,6 +246,7 @@ VOID CALLBACK TimerProc8(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 {
 	vector<string> fileNames = dir.GetListFiles(dir_path, "*.*", false);
 	vector<string> fileNames1 = dir.GetListFiles(dir_path1, "*.*", false);
+	//_Global_Obj_Ptr->ImageName=dir.GetListFiles(dir_path2,"*.*",false);
 	if(i<fileNames.size())
 	{
 		string fileName = fileNames[i]; 
@@ -241,6 +259,7 @@ VOID CALLBACK TimerProc8(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedImagefusion();	
 		string fileFullName2=dir_path2+fileName;
 		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
+		_Global_Obj_Ptr->ImagePath[i]=fileFullName2.c_str();
 		i++;
 
 	}
@@ -253,6 +272,7 @@ VOID CALLBACK TimerProc9(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 {
 	vector<string> fileNames = dir.GetListFiles(dir_path, "*.*", false);
 	vector<string> fileNames1 = dir.GetListFiles(dir_path1, "*.*", false);
+//	_Global_Obj_Ptr->ImageName=dir.GetListFiles(dir_path2,"*.*",false);
 	if(i<fileNames.size())
 	{
 		string fileName = fileNames[i]; 
@@ -265,6 +285,7 @@ VOID CALLBACK TimerProc9(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedLaplace();	
 		string fileFullName2=dir_path2+fileName;
 		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
+		_Global_Obj_Ptr->ImagePath[i]=fileFullName2.c_str();
 		i++;
 
 	}
@@ -277,6 +298,7 @@ VOID CALLBACK TimerProc10(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 {
 	vector<string> fileNames = dir.GetListFiles(dir_path, "*.*", false);
 	vector<string> fileNames1 = dir.GetListFiles(dir_path1, "*.*", false);
+	//_Global_Obj_Ptr->ImageName=dir.GetListFiles(dir_path2,"*.*",false);
 	if(i<fileNames.size())
 	{
 		string fileName = fileNames[i]; 
@@ -289,6 +311,7 @@ VOID CALLBACK TimerProc10(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedHisfusion();	
 		string fileFullName2=dir_path2+fileName;
 		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
+		_Global_Obj_Ptr->ImagePath[i]=fileFullName2.c_str();
 		i++;
 
 	}
@@ -301,6 +324,7 @@ VOID CALLBACK TimerProc11(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 {
 	vector<string> fileNames = dir.GetListFiles(dir_path, "*.*", false);
 	vector<string> fileNames1 = dir.GetListFiles(dir_path1, "*.*", false);
+	//_Global_Obj_Ptr->ImageName=dir.GetListFiles(dir_path2,"*.*",false);
 	if(i<fileNames.size())
 	{
 		string fileName = fileNames[i]; 
@@ -313,6 +337,7 @@ VOID CALLBACK TimerProc11(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedRate();	
 		string fileFullName2=dir_path2+fileName;
 		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
+		_Global_Obj_Ptr->ImagePath[i]=fileFullName2.c_str();
 		i++;
 
 	}
@@ -325,6 +350,7 @@ VOID CALLBACK TimerProc12(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 {
 	vector<string> fileNames = dir.GetListFiles(dir_path, "*.*", false);
 	vector<string> fileNames1 = dir.GetListFiles(dir_path1, "*.*", false);
+//	_Global_Obj_Ptr->ImageName=dir.GetListFiles(dir_path2,"*.*",false);
 	if(i<fileNames.size())
 	{
 		string fileName = fileNames[i]; 
@@ -336,6 +362,7 @@ VOID CALLBACK TimerProc12(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedImagefusion();	
 		string fileFullName2=dir_path2+fileName;
 		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
+		_Global_Obj_Ptr->ImagePath[i]=fileFullName2.c_str();
 		i++;
 
 	}
@@ -348,6 +375,7 @@ VOID CALLBACK TimerProc13(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 {
 	vector<string> fileNames = dir.GetListFiles(dir_path, "*.*", false);
 	vector<string> fileNames1 = dir.GetListFiles(dir_path1, "*.*", false);
+//	_Global_Obj_Ptr->ImageName=dir.GetListFiles(dir_path2,"*.*",false);
 	if(i<fileNames.size())
 	{
 		string fileName = fileNames[i]; 
@@ -359,6 +387,7 @@ VOID CALLBACK TimerProc13(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedLaplace();	
 		string fileFullName2=dir_path2+fileName;
 		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
+		_Global_Obj_Ptr->ImagePath[i]=fileFullName2.c_str();
 		i++;
 
 	}
@@ -371,6 +400,7 @@ VOID CALLBACK TimerProc14(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 {
 	vector<string> fileNames = dir.GetListFiles(dir_path, "*.*", false);
 	vector<string> fileNames1 = dir.GetListFiles(dir_path1, "*.*", false);
+//	_Global_Obj_Ptr->ImageName=dir.GetListFiles(dir_path2,"*.*",false);
 	if(i<fileNames.size())
 	{
 		string fileName = fileNames[i]; 
@@ -382,6 +412,7 @@ VOID CALLBACK TimerProc14(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedHisfusion();	
 		string fileFullName2=dir_path2+fileName;
 		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
+		_Global_Obj_Ptr->ImagePath[i]=fileFullName2.c_str();
 		i++;
 
 	}
@@ -394,6 +425,7 @@ VOID CALLBACK TimerProc15(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 {
 	vector<string> fileNames = dir.GetListFiles(dir_path, "*.*", false);
 	vector<string> fileNames1 = dir.GetListFiles(dir_path1, "*.*", false);
+//	_Global_Obj_Ptr->ImageName=dir.GetListFiles(dir_path2,"*.*",false);
 	if(i<fileNames.size())
 	{
 		string fileName = fileNames[i]; 
@@ -405,6 +437,7 @@ VOID CALLBACK TimerProc15(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedRate();	
 		string fileFullName2=dir_path2+fileName;
 		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
+		_Global_Obj_Ptr->ImagePath[i]=fileFullName2.c_str();
 		i++;
 
 	}
@@ -418,6 +451,7 @@ VOID CALLBACK TimerProc16(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 
 	vector<string> fileNames = dir.GetListFiles(dir_path, "*.*", false);
 	vector<string> fileNames1 = dir.GetListFiles(dir_path1, "*.*", false);
+	//_Global_Obj_Ptr->ImageName=dir.GetListFiles(dir_path2,"*.*",false);
 	if(i<fileNames.size())
 	{
 		string fileName = fileNames[i]; 
@@ -430,6 +464,9 @@ VOID CALLBACK TimerProc16(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedRegistry();
 		_Global_Obj_Ptr->OnBnClickedImagefusion();
 		_Global_Obj_Ptr->OnBnClickedTarget();
+		string fileFullName2=dir_path2+fileName;
+		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
+		_Global_Obj_Ptr->ImagePath[i]=fileFullName2.c_str();
 		i++;
 
 	}
@@ -443,6 +480,7 @@ VOID CALLBACK TimerProc17(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 
 	vector<string> fileNames = dir.GetListFiles(dir_path, "*.*", false);
 	vector<string> fileNames1 = dir.GetListFiles(dir_path1, "*.*", false);
+//	_Global_Obj_Ptr->ImageName=dir.GetListFiles(dir_path2,"*.*",false);
 	if(i<fileNames.size())
 	{
 		string fileName = fileNames[i]; 
@@ -455,6 +493,9 @@ VOID CALLBACK TimerProc17(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedRegistry();
 		_Global_Obj_Ptr->OnBnClickedLaplace();
 		_Global_Obj_Ptr->OnBnClickedTarget();
+		string fileFullName2=dir_path2+fileName;
+		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
+		_Global_Obj_Ptr->ImagePath[i]=fileFullName2.c_str();
 		i++;
 
 	}
@@ -468,6 +509,7 @@ VOID CALLBACK TimerProc18(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 
 	vector<string> fileNames = dir.GetListFiles(dir_path, "*.*", false);
 	vector<string> fileNames1 = dir.GetListFiles(dir_path1, "*.*", false);
+//	_Global_Obj_Ptr->ImageName=dir.GetListFiles(dir_path2,"*.*",false);
 	if(i<fileNames.size())
 	{
 		string fileName = fileNames[i]; 
@@ -480,6 +522,9 @@ VOID CALLBACK TimerProc18(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedRegistry();
 		_Global_Obj_Ptr->OnBnClickedHisfusion();
 		_Global_Obj_Ptr->OnBnClickedTarget();
+		string fileFullName2=dir_path2+fileName;
+		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
+		_Global_Obj_Ptr->ImagePath[i]=fileFullName2.c_str();
 		i++;
 
 	}
@@ -493,6 +538,7 @@ VOID CALLBACK TimerProc19(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 
 	vector<string> fileNames = dir.GetListFiles(dir_path, "*.*", false);
 	vector<string> fileNames1 = dir.GetListFiles(dir_path1, "*.*", false);
+//	_Global_Obj_Ptr->ImageName=dir.GetListFiles(dir_path2,"*.*",false);
 	if(i<fileNames.size())
 	{
 		string fileName = fileNames[i]; 
@@ -505,6 +551,9 @@ VOID CALLBACK TimerProc19(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedRegistry();
 		_Global_Obj_Ptr->OnBnClickedRate();
 		_Global_Obj_Ptr->OnBnClickedTarget();
+		string fileFullName2=dir_path2+fileName;
+		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
+		_Global_Obj_Ptr->ImagePath[i]=fileFullName2.c_str();
 		i++;
 
 	}
@@ -517,6 +566,7 @@ VOID CALLBACK TimerProc20(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 {
 	vector<string> fileNames = dir.GetListFiles(dir_path, "*.*", false);
 	vector<string> fileNames1 = dir.GetListFiles(dir_path1, "*.*", false);
+//	_Global_Obj_Ptr->ImageName=dir.GetListFiles(dir_path2,"*.*",false);
 	if(i<fileNames.size())
 	{
 		string fileName = fileNames[i];
@@ -530,6 +580,7 @@ VOID CALLBACK TimerProc20(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedTarget();
 		string fileFullName2=dir_path2+fileName;
 		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
+		_Global_Obj_Ptr->ImagePath[i]=fileFullName2.c_str();
 		i++;
 
 	}
@@ -542,6 +593,7 @@ VOID CALLBACK TimerProc21(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 {
 	vector<string> fileNames = dir.GetListFiles(dir_path, "*.*", false);
 	vector<string> fileNames1 = dir.GetListFiles(dir_path1, "*.*", false);
+//	_Global_Obj_Ptr->ImageName=dir.GetListFiles(dir_path2,"*.*",false);
 	if(i<fileNames.size())
 	{
 		string fileName = fileNames[i];
@@ -555,6 +607,7 @@ VOID CALLBACK TimerProc21(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedTarget();
 		string fileFullName2=dir_path2+fileName;
 		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
+		_Global_Obj_Ptr->ImagePath[i]=fileFullName2.c_str();
 		i++;
 
 	}
@@ -567,6 +620,7 @@ VOID CALLBACK TimerProc22(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 {
 	vector<string> fileNames = dir.GetListFiles(dir_path, "*.*", false);
 	vector<string> fileNames1 = dir.GetListFiles(dir_path1, "*.*", false);
+//	_Global_Obj_Ptr->ImageName=dir.GetListFiles(dir_path2,"*.*",false);
 	if(i<fileNames.size())
 	{
 		string fileName = fileNames[i];
@@ -580,6 +634,7 @@ VOID CALLBACK TimerProc22(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedTarget();
 		string fileFullName2=dir_path2+fileName;
 		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
+		_Global_Obj_Ptr->ImagePath[i]=fileFullName2.c_str();
 		i++;
 
 	}
@@ -592,6 +647,7 @@ VOID CALLBACK TimerProc23(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 {
 	vector<string> fileNames = dir.GetListFiles(dir_path, "*.*", false);
 	vector<string> fileNames1 = dir.GetListFiles(dir_path1, "*.*", false);
+//	_Global_Obj_Ptr->ImageName=dir.GetListFiles(dir_path2,"*.*",false);
 	if(i<fileNames.size())
 	{
 		string fileName = fileNames[i];
@@ -605,6 +661,7 @@ VOID CALLBACK TimerProc23(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedTarget();
 		string fileFullName2=dir_path2+fileName;
 		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
+		_Global_Obj_Ptr->ImagePath[i]=fileFullName2.c_str();
 		i++;
 
 	}
@@ -617,6 +674,7 @@ VOID CALLBACK TimerProc24(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 {
 	vector<string> fileNames = dir.GetListFiles(dir_path, "*.*", false);
 	vector<string> fileNames1 = dir.GetListFiles(dir_path1, "*.*", false);
+//	_Global_Obj_Ptr->ImageName=dir.GetListFiles(dir_path2,"*.*",false);
 	if(i<fileNames.size())
 	{
 		string fileName = fileNames[i];
@@ -630,6 +688,7 @@ VOID CALLBACK TimerProc24(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedTarget();
 		string fileFullName2=dir_path2+fileName;
 		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
+		_Global_Obj_Ptr->ImagePath[i]=fileFullName2.c_str();
 		i++;
 
 	}
@@ -642,6 +701,7 @@ VOID CALLBACK TimerProc25(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 {
 	vector<string> fileNames = dir.GetListFiles(dir_path, "*.*", false);
 	vector<string> fileNames1 = dir.GetListFiles(dir_path1, "*.*", false);
+//	_Global_Obj_Ptr->ImageName=dir.GetListFiles(dir_path2,"*.*",false);
 	if(i<fileNames.size())
 	{
 		string fileName = fileNames[i];
@@ -655,6 +715,7 @@ VOID CALLBACK TimerProc25(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedTarget();
 		string fileFullName2=dir_path2+fileName;
 		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
+		_Global_Obj_Ptr->ImagePath[i]=fileFullName2.c_str();
 		i++;
 
 	}
@@ -667,6 +728,7 @@ VOID CALLBACK TimerProc26(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 {
 	vector<string> fileNames = dir.GetListFiles(dir_path, "*.*", false);
 	vector<string> fileNames1 = dir.GetListFiles(dir_path1, "*.*", false);
+//	_Global_Obj_Ptr->ImageName=dir.GetListFiles(dir_path2,"*.*",false);
 	if(i<fileNames.size())
 	{
 		string fileName = fileNames[i];
@@ -680,6 +742,7 @@ VOID CALLBACK TimerProc26(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedTarget();
 		string fileFullName2=dir_path2+fileName;
 		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
+		_Global_Obj_Ptr->ImagePath[i]=fileFullName2.c_str();
 		i++;
 
 	}
@@ -692,6 +755,7 @@ VOID CALLBACK TimerProc27(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 {
 	vector<string> fileNames = dir.GetListFiles(dir_path, "*.*", false);
 	vector<string> fileNames1 = dir.GetListFiles(dir_path1, "*.*", false);
+//	_Global_Obj_Ptr->ImageName=dir.GetListFiles(dir_path2,"*.*",false);
 	if(i<fileNames.size())
 	{
 		string fileName = fileNames[i];
@@ -705,6 +769,7 @@ VOID CALLBACK TimerProc27(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedTarget();
 		string fileFullName2=dir_path2+fileName;
 		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
+		_Global_Obj_Ptr->ImagePath[i]=fileFullName2.c_str();
 		i++;
 
 	}
@@ -717,6 +782,7 @@ VOID CALLBACK TimerProc28(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 {
 	vector<string> fileNames = dir.GetListFiles(dir_path, "*.*", false);
 	vector<string> fileNames1 = dir.GetListFiles(dir_path1, "*.*", false);
+//	_Global_Obj_Ptr->ImageName=dir.GetListFiles(dir_path2,"*.*",false);
 	if(i<fileNames.size())
 	{
 		string fileName = fileNames[i];
@@ -729,6 +795,7 @@ VOID CALLBACK TimerProc28(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedTarget();
 		string fileFullName2=dir_path2+fileName;
 		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
+		_Global_Obj_Ptr->ImagePath[i]=fileFullName2.c_str();
 		i++;
 
 	}
@@ -741,6 +808,7 @@ VOID CALLBACK TimerProc29(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 {
 	vector<string> fileNames = dir.GetListFiles(dir_path, "*.*", false);
 	vector<string> fileNames1 = dir.GetListFiles(dir_path1, "*.*", false);
+//	_Global_Obj_Ptr->ImageName=dir.GetListFiles(dir_path2,"*.*",false);
 	if(i<fileNames.size())
 	{
 		string fileName = fileNames[i];
@@ -753,6 +821,7 @@ VOID CALLBACK TimerProc29(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedTarget();
 		string fileFullName2=dir_path2+fileName;
 		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
+		_Global_Obj_Ptr->ImagePath[i]=fileFullName2.c_str();
 		i++;
 
 	}
@@ -765,6 +834,7 @@ VOID CALLBACK TimerProc30(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 {
 	vector<string> fileNames = dir.GetListFiles(dir_path, "*.*", false);
 	vector<string> fileNames1 = dir.GetListFiles(dir_path1, "*.*", false);
+//	_Global_Obj_Ptr->ImageName=dir.GetListFiles(dir_path2,"*.*",false);
 	if(i<fileNames.size())
 	{
 		string fileName = fileNames[i];
@@ -777,6 +847,7 @@ VOID CALLBACK TimerProc30(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedTarget();
 		string fileFullName2=dir_path2+fileName;
 		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
+		_Global_Obj_Ptr->ImagePath[i]=fileFullName2.c_str();
 		i++;
 
 	}
@@ -789,6 +860,7 @@ VOID CALLBACK TimerProc31(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 {
 	vector<string> fileNames = dir.GetListFiles(dir_path, "*.*", false);
 	vector<string> fileNames1 = dir.GetListFiles(dir_path1, "*.*", false);
+//	_Global_Obj_Ptr->ImageName=dir.GetListFiles(dir_path2,"*.*",false);
 	if(i<fileNames.size())
 	{
 		string fileName = fileNames[i];
@@ -801,6 +873,7 @@ VOID CALLBACK TimerProc31(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime)
 		_Global_Obj_Ptr->OnBnClickedTarget();
 		string fileFullName2=dir_path2+fileName;
 		imwrite(fileFullName2,_Global_Obj_Ptr->imgfusion);
+		_Global_Obj_Ptr->ImagePath[i]=fileFullName2.c_str();
 		i++;
 
 	}
@@ -870,6 +943,9 @@ BOOL CRenderCenterDlg::OnInitDialog()
 	m_ComboL.AddString(_T("图像HIS融合"));
 	m_ComboL.AddString(_T("图像比率低通融合"));
 	m_ComboL.SetCurSel(0);
+	count=0;
+	//ImagePath=(dir_path2+ImageName[count]).c_str();
+	
 	
 
     if (!m_RenderCenterSocket->Create(RENDER_CENTER_PORT))
@@ -1444,12 +1520,18 @@ void CRenderCenterDlg::OnBnClickedTarget()
 	KeyPoint::convert(m_rightinliner,key2);
 
 	Mat H=findHomography(m_leftinliner,m_rightinliner,CV_RANSAC);
-	std::vector<Point2f> obj_corners(4);
-    obj_corners[0]=cv::Point(0,0);obj_corners[1]=cv::Point(imgtarget.cols,0);
-    obj_corners[2]=cv::Point(imgtarget.cols,imgtarget.rows);obj_corners[3]=cv::Point(0,imgtarget.rows);
-	std::vector<Point2f>scene_corners(4);
-	perspectiveTransform(obj_corners,scene_corners,H);
-	rectangle(imgfusion,scene_corners[0],scene_corners[2],Scalar(0,0,255,0),1,8,0);
+	
+	if(!H.empty())
+	{
+		std::vector<Point2f> obj_corners(4);
+		obj_corners[0]=cv::Point(0,0);obj_corners[1]=cv::Point(imgtarget.cols,0);
+		obj_corners[2]=cv::Point(imgtarget.cols,imgtarget.rows);obj_corners[3]=cv::Point(0,imgtarget.rows);
+		std::vector<Point2f>scene_corners(4);
+		perspectiveTransform(obj_corners,scene_corners,H);
+		rectangle(imgfusion,scene_corners[0],scene_corners[2],Scalar(0,0,255,0),1,8,0);
+
+	}
+	//rectangle(imgfusion,scene_corners[0],scene_corners[2],Scalar(0,0,255,0),1,8,0);
 
 
 	CWnd *pWnd=GetDlgItem(IDC_IMGFUSION);
@@ -1554,12 +1636,17 @@ void CRenderCenterDlg::OnBnClickedStart()
 	}
 	i=0;
 	_Global_Obj_Ptr = this;
+
+	
+
 }
 
 
 void CRenderCenterDlg::OnBnClickedStop()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	
+	
 	if(BST_UNCHECKED==IsDlgButtonChecked(IDC_CHECK3)&&BST_CHECKED==IsDlgButtonChecked(IDC_CHECK1)&&BST_CHECKED==IsDlgButtonChecked(IDC_CHECK2))
 	{
 
@@ -1642,6 +1729,8 @@ void CRenderCenterDlg::OnBnClickedStop()
 		case 3:KillTimer(32);break;
 		}
 	}
+
+	
 
 }
 
